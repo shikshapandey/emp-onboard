@@ -1,0 +1,143 @@
+#%RAML 1.0
+title: emp-onboard-sapi
+description: employee onboarding api
+baseUri: https://localhost:8081/emp-sapi/v1
+/add-employee:
+  post:
+    body:
+      application/json:
+        example:
+          {
+            "empid": 100,
+            "empname": "Ravi",
+            "status": "A"
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "status": 200,
+                "message": "Success"
+              }
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "status": 500,
+                "message": "Internal server erorr"
+
+              }
+/update-employee:
+  description: To Update a employee status
+  post:
+    body:
+      application/xml:
+        example:
+          <?xml version="1.0" encoding="UTF-8"?>
+          <emp>
+            <empid>100</empid>
+            <empstatus>A</empstatus>
+          </emp>
+    responses:
+            200:
+              body:
+                application/xml:
+                  example:
+                    <?xml version="1.0" encoding="UTF-8"?>
+                      <response>
+                        <status>200</status>
+                        <message>Success</message>
+                      </response>
+            500:
+              body:
+                application/xml:
+                  example:
+                    <?xml version="1.0" encoding="UTF-8"?>
+                      <response>
+                        <status>500</status>
+                        <message>Internal server erorr</message>
+                      </response>
+
+/fetch-employee:
+  get:
+    queryParameters:
+      empid:
+        displayName: empid
+        required: true
+        type: integer
+        example: 8788
+      status:
+        displayName: status
+        required: false
+        type: string
+        example: "A"
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "empid": 100,
+                "empname": "Ravi",
+                "status": "A"
+              }
+      400:
+        body:
+          application/json:
+            example:
+              {
+                "status": 404,
+                "message": "No Employee Found"
+              }
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "status": 500,
+                "message": "Internal server erorr"
+
+              }
+/delete-employee/{empid}:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "empid": 100,
+                "empname": "Ravi",
+                "status": "A"
+              }
+      400:
+        body:
+          application/json:
+            example:
+              {
+                "status": 404,
+                "message": "No Employee Found"
+              }
+      500:
+        body:
+          application/json:
+            example:
+              {
+                "status": 500,
+                "message": "Internal server erorr"
+
+              }
+      
+          
+          
+
+              
+
+                           
+        
+
+                                  
+              
